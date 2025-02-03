@@ -1,0 +1,6 @@
+train: C:\Users\Mariana\inspectra\train
+val: C:\Users\Mariana\inspectra\val
+
+nc: 2
+
+names: ["Danificado","Intacto"]
