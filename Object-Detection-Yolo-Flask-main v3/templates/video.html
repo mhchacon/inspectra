@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webcam Object Detection</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #f06, #48f);
+            font-family: Arial, sans-serif;
+            color: #fff;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        #video-container {
+            position: relative;
+            width: 90%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        #video-feed {
+            width: 100%;
+            border: 5px solid #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        #toggle-camera {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        #toggle-camera:hover {
+            background: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Face Detection Application</h1>
+    <div id="video-container">
+        <img id="video-feed" src="/video_feed" alt="Video Feed">
+    </div>
+    <button id="toggle-camera">Alternar Câmera</button>
+
+    <script>
+        // Função para alternar entre a câmera e um vídeo estático (opcional)
+        const toggleCameraButton = document.getElementById('toggle-camera');
+        const videoFeed = document.getElementById('video-feed');
+        let isCameraActive = true;
+
+        toggleCameraButton.addEventListener('click', () => {
+            if (isCameraActive) {
+                videoFeed.src = "/static/sample-video.mp4"; // Substitua pelo caminho do vídeo estático
+                toggleCameraButton.textContent = "Ativar Câmera";
+            } else {
+                videoFeed.src = "/video_feed";
+                toggleCameraButton.textContent = "Alternar para Vídeo";
+            }
+            isCameraActive = !isCameraActive;
+        });
+    </script>
+</body>
+</html>
