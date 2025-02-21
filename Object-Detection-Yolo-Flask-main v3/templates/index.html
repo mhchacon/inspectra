@@ -14,54 +14,28 @@
             <input type="file" id="image" name="image" accept="image/*" required>
             <input type="submit" value="Enviar e Aplicar Detecção">
         </form>
-        <br>
-        <h2>Imagem Processada:</h2>
-        <img id="output-image" src="" alt="Imagem Processada">
-        <br>
-        <a id="download-link" href="" download="output.png">Baixar Imagem</a>
+        
+        <!-- Botão para ver resultados -->
+        <a href="/results" class="back-button">Ver Todas as Inspeções</a>
+
+        <!-- Relatório (exibido apenas após processamento) -->
+        {% if inspection_time %}
+        <div class="report-container">
+            <h1>Relatório de Inspeção</h1>
+            <p><strong>Horário da Inspeção:</strong> {{ inspection_time }}</p>
+            <p><strong>Objetos Intactos:</strong> {{ intact_count }}</p>
+            <p><strong>Objetos Danificados:</strong> {{ damaged_count }}</p>
+            <h2>Imagem Processada:</h2>
+            <img src="data:image/png;base64,{{ image_data }}" alt="Imagem Processada" class="processed-image">
+            <a href="data:image/png;base64,{{ image_data }}" download="imagem_processada.png" class="back-button">
+                Baixar Inspeção
+            </a>
+            <a href="/" class="back-button">Voltar</a>
+        </div>
+        {% endif %}
+
+        
         <div id="message"></div>
     </div>
-
-    <script>
-        document.getElementById('upload-form').onsubmit = async function(event) {
-            event.preventDefault();
-
-            const fileInput = document.getElementById('image');
-            if (!fileInput.files || fileInput.files.length === 0) {
-                alert('Por favor, selecione uma imagem antes de enviar.');
-                return;
-            }
-
-            const messageDiv = document.getElementById('message');
-            messageDiv.style.display = 'none';
-
-            const formData = new FormData(event.target);
-            const response = await fetch('/object-detection/', {
-                method: 'POST',
-                body: formData
-            });
-
-            if (response.ok) {
-                const blob = await response.blob();
-                const url = URL.createObjectURL(blob);
-
-                const outputImage = document.getElementById('output-image');
-                outputImage.src = url;
-                outputImage.style.display = 'block';
-
-                const downloadLink = document.getElementById('download-link');
-                downloadLink.href = url;
-
-                messageDiv.textContent = 'Imagem processada com sucesso!';
-                messageDiv.style.backgroundColor = '#4CAF50';
-                messageDiv.style.display = 'block';
-            } else {
-                const error = await response.text();
-                messageDiv.textContent = `Erro: ${error}`;
-                messageDiv.style.backgroundColor = '#f44336';
-                messageDiv.style.display = 'block';
-            }
-        };
-    </script>
 </body>
 </html>

@@ -75,7 +75,7 @@ img {
     border: 1px solid #ccc;
     border-radius: 10px;
     object-fit: contain;
-    display: none; /* Inicialmente oculto */
+    
 }
 
 a#download-link {
@@ -100,4 +100,28 @@ a#download-link:hover {
     display: none;
     color: #fff;
     font-size: 1em;
+}
+.report-container {
+    margin-top: 20px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.processed-image {
+    max-width: 100%;
+    margin-top: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.back-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
 }
