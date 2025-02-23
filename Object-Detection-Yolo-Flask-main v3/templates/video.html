@@ -62,14 +62,14 @@
     <button id="toggle-camera">Alternar Câmera</button>
 
     <script>
-        // Função para alternar entre a câmera e um vídeo estático (opcional)
+        
         const toggleCameraButton = document.getElementById('toggle-camera');
         const videoFeed = document.getElementById('video-feed');
         let isCameraActive = true;
 
         toggleCameraButton.addEventListener('click', () => {
             if (isCameraActive) {
-                videoFeed.src = "/static/sample-video.mp4"; // Substitua pelo caminho do vídeo estático
+                videoFeed.src = "/static/sample-video.mp4"; 
                 toggleCameraButton.textContent = "Ativar Câmera";
             } else {
                 videoFeed.src = "/video_feed";
